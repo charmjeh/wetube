@@ -1,5 +1,12 @@
 extends layouts/main 
+include mixins/videoBlock
 
 block content
+    // Added Mixin(Mixin/videoBlock) : Mixin is to recycle the same HTML structure and keep it organized on a different file.
     .videos
-        h1 Video
+        each item in videos
+            +videoBlock({ 
+                title: item.title,
+                views: item.views,
+                videoFile:item.videoFile
+            })
