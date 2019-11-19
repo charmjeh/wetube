@@ -1,38 +1,19 @@
-export const videos = [
+import mongoose from 'mongoose'
+import dotenv from 'dotenv' // keep secure db info
+dotenv.config();
+
+mongoose.connect(
+    process.env.MONGO_URL, // (urls:string, ..localhost:포트번호/데이터베이스명, where is your database stored)
     {
-        id: 3236,
-        title: 'Video awesome',
-        description: 'This is something I love',
-        views: 24, 
-        videoFile: "http://techslides.com/demos/sample-videos/small.mp4",
-        creator: {
-            id: 121212,
-            name: "Nicolas",
-            email: "nico@las.com"
-        }
-    },
-    {
-        id: 3237,
-        title: 'Video super',
-        description: 'Changed description',
-        views: 24, 
-        videoFile: "http://techslides.com/demos/sample-videos/small.mp4",
-        creator: {
-            id: 121212,
-            name: "Nicolas",
-            email: "nico@las.com"
-        }
-    },
-    {
-        id: 3238,
-        title: 'Video nice',
-        description: 'This is something I love',
-        views: 24, 
-        videoFile: "http://techslides.com/demos/sample-videos/small.mp4",
-        creator: {
-            id: 121213,
-            name: "Nicolas",
-            email: "nico@las.com"
-        }
-    },
-];
+        useNewUrlParser: true,
+        useFindAndModify: false
+    }
+);
+
+const db = mongoose.connection;
+
+const handleOpen = () => console.log("✅  Connected to DB")
+const handleError = () => console.log("❌  Error on db connection")
+
+db.once('open', handleOpen)
+db.on('error', handleError)
