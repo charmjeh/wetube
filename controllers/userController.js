@@ -1,4 +1,5 @@
 import routes from '../routes'
+
 export const getJoin = (req, res) => {
   res.render("join", { pageTitle: "Join" });
 };

@@ -6,7 +6,8 @@ mongoose.connect(
     process.env.MONGO_URL, // (urls:string, ..localhost:포트번호/데이터베이스명, where is your database stored)
     {
         useNewUrlParser: true,
-        useFindAndModify: false
+        useFindAndModify: false,
+        useUnifiedTopology: true
     }
 );
 
