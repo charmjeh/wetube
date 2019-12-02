@@ -8,7 +8,7 @@ export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = "WeTube";
     res.locals.routes = routes;
     res.locals.user = {
-        isAuthentificated: true,
+        isAuthentificated: false,
         id: 1
     }
     next(); // 다음 함수로 이동
