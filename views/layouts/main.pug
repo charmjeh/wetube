@@ -1,6 +1,7 @@
 doctype html
 html
     head
+        link(rel='stylesheet', href='/static/styles.css')
         title #{pageTitle} | #{siteName}
     body
         include ../partials/header
@@ -8,3 +9,4 @@ html
             block content
         include ../partials/footer
         script(src="https://use.fontawesome.com/releases/v5.2.0/js/all.js")
+        script(src="/static/main.js")

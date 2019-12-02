@@ -1,6 +1,6 @@
 import mongoose, { mongo } from 'mongoose';
 
-const VideoSchema = new mongoose.Schema({  // definition
+const VideoSchema = new mongoose.Schema({  // definition (the shape of data on DB)
     fileUrl: {
         type: String,
         required: 'File URL is required'

@@ -14,6 +14,7 @@ const app = express();
 app.use(helmet());
 app.set('view engine', 'pug'); // 템플릿 언어, express의 view engine
 app.use('/uploads', express.static('uploads')); // middleware to serve files from whithin a given root directory
+app.use('/static', express.static('static')); // static 경로로 접근 시 static 폴더를 찾도록 함
 app.use(cookieParser()); // 쿠키를 전달받아 사용할 수 있도록 함
 app.use(bodyParser.json()) // 사용자가 웹사이트로 전달하는 정보들을 검사. request 정보에서 form이나 json 형태로 된 body 검사
 app.use(bodyParser.urlencoded({ extended: true }))
