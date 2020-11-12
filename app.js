@@ -26,7 +26,11 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 app.use(morgan("dev")); // application에서 발생하는 모든 일들을 logging
-app.use(session)
+app.use(session({
+    secret: 'eunhee',
+    resave: true,
+    saveUninitialized: true
+}))
 app.use(passport.initialize())
 app.use(passport.session())
 // 위에서 실행된 cookieParser로부터 쿠키가 내려와서
