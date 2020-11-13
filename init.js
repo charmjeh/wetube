@@ -11,4 +11,4 @@ const PORT = process.env.PORT || 4000
 const handleListening = () =>
     console.log(`✅  Listening on: http://localhost:${PORT}`);
 
-app.listen(PORT, handleListening);
+app.listen(PORT, handleListening); // 4000포트로 접근 시 handleListening 실행됨.

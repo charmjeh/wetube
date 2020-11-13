@@ -1,6 +1,7 @@
-import mongoose, { mongo } from 'mongoose';
+import mongoose from 'mongoose';
 
-const VideoSchema = new mongoose.Schema({  // definition (the shape of data on DB)
+// required가 충족되지 못하면 발생하는 에러메시지를 함께 작성함.
+const VideoSchema = new mongoose.Schema({ // definition (the shape of data on DB)
     fileUrl: {
         type: String,
         required: 'File URL is required'
@@ -15,11 +16,11 @@ const VideoSchema = new mongoose.Schema({  // definition (the shape of data on D
         default: 0
     },
     createdAt: {
-        type: Date, 
+        type: Date,
         default: Date.now
     },
     comments: [{ // how relate video and comment (방법 #1)
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Comment"
     }]
 });

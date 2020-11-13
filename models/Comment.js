@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+// mongoose.Schema.Types.ObjectId : how relate video and comment (방법 #2 : * 방법 1은 video에서 확인)
+// ref : from which module
 const CommentSchema = new mongoose.Schema({
     text: {
         type: String,
@@ -9,9 +11,9 @@ const CommentSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     }
-    // video: { // how relate video and comment (방법 #2)
-    //     type: mongoose.Schema.Types.ObjectId, 
-    //     ref: "Video" // which module
+    // video: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Video"
     // }
 })
 

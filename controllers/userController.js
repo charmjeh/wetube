@@ -30,7 +30,7 @@ export const postJoin = async (req, res, next) => {
       await User.register(user, password);
       next();
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
     // To Do: Log user in
   }
