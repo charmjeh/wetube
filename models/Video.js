@@ -22,7 +22,11 @@ const VideoSchema = new mongoose.Schema({ // definition (the shape of data on DB
     comments: [{ // how relate video and comment (방법 #1)
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment"
-    }]
+    }],
+    create: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }
 });
 
 const model = mongoose.model('Video', VideoSchema)

@@ -6,7 +6,15 @@ const UserScheme = new mongoose.Schema({
     email: String,
     avartarUrl: String,
     facebookId: Number,
-    githubId: Number
+    githubId: Number,
+    comments: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+    },
+    videos: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Video'
+    }
 });
 // 소셜 아이디 정보를 저장하여 다른 소셜로 로그인 시도 시
 // 이미 가입된 아이디가 있음을 알릴 수 있다.

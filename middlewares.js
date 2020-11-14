@@ -8,6 +8,11 @@ const multerVideo = multer({
     dest: 'uploads/videos/'
 });
 
+// 아래 방식은 권장하는 방식은 아님. 권장되는 방식은 아마존을 이용하는것
+const multerAvatar = multer({
+    dest: 'uploads/avatars/'
+})
+
 // locals : 로컬 변수 응답을 포함하는 객체 (전역 범위에 변수를 추가하기 위해 사용)
 // 템플릿에서 로컬변수를 사용 시 #{siteName}, href=routes.join과 같이 쓸 수 있음
 // passport 가 사용자가 로그인 시 user가 담긴 object를 요청(request)에도 올려주므로 아래와 같이 사용 가능)
@@ -16,7 +21,7 @@ const multerVideo = multer({
 export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = "WeTube";
     res.locals.routes = routes;
-    res.locals.user = req.user || null;
+    res.locals.loggedUser = req.user || null;
     next();
 };
 
@@ -40,3 +45,4 @@ export const onlyPrivate = (req, res, next) => {
 // sigle('name of video element') : 하나의 파일만 업로드 가능
 // file(name=videoFile)
 export const uploadVideo = multerVideo.single('videoFile')
+export const uploadAvatar = multerAvatar.single('avatar')
