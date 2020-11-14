@@ -47,8 +47,20 @@ export const postLogin = passport.authenticate('local', {
   successRedirect: routes.home
 })
 
+// /auth/github로 접근 시 실행되어, passport.js의 GithubStrategy를 이용한다.
+export const githubLogin = passport.authenticate('github');
+
+// cb : 패스포트가 제공하는 함수로, 패스포트에게 사용자가 성공적으로 로그인되었음을 알릴 것.
+export const githubLoginCallback = (accessToken, refreshToken, profile, cb) => {
+  console.log(accessToken, refreshToken, profile, cb);
+};
+
+export const postGithubLogIn = (req, res) => {
+  res.send(routes.home);
+};
+
 export const logout = (req, res) => {
-  // TODO : process log out
+  req.logout();
   res.redirect(routes.home)
 };
 

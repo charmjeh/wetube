@@ -1,7 +1,23 @@
-import passport from 'passport' // 사용자 인증을 위한 라이브러리
-import User from './models/User'
+import passport from "passport"; // 사용자 인증을 위한 라이브러리
+import GithubStrategy from "passport-github";
+import User from "./models/User";
+import {
+    githubLoginCallback
+} from "./controllers/userController";
+import routes from "./routes";
 
-passport.use(User.createStrategy()) // 이미 구성이 된 paassport-local의 LocalStrategy를 생성합니다.
+// 이미 구성이 된 paassport-local의 LocalStrategy를 생성합니다.
+passport.use(User.createStrategy());
+
+passport.use(
+    new GithubStrategy({
+            clientID: process.env.GH_ID,
+            clientSecret: process.env.GH_SECRET,
+            callbackURL: `http://localhost:4000${routes.githubCallback}`
+        },
+        githubLoginCallback
+    )
+);
 
 // 일반적으로 사용자 인증 시 쿠키에 user.id를 담고 그 아이디로 사용자를 식별하는 방식 사용
 // serialization : 어떤 필드가 쿠키에 저장될지 알려주는 역할 (ex: userId)
