@@ -23,7 +23,7 @@ const VideoSchema = new mongoose.Schema({ // definition (the shape of data on DB
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment"
     }],
-    create: {
+    creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     }

@@ -23,7 +23,7 @@ passport.use(
     )
 );
 passport.use(
-    new GithubStrategy({
+    new FacebookStrategy({
             clientID: process.env.FB_ID,
             clientSecret: process.env.FB_SECRET,
             callbackURL: `https://sharp-jellyfish-43.loca.lt${routes.facebookCallback}`,

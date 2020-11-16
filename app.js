@@ -42,7 +42,7 @@ app.use(morgan("dev"));
 // mongoose는 이 저장소를 데이터 베이스에 연결하며,
 // 서버가 재시작되어도 쿠키가 보존되어 유저가 로그인 상태를 유지할 수 있게 한다.
 app.use(session({
-    secret: 'Lwlko4JeBfhlHpk0KvtHQUfxOHACD378',
+    secret: process.env.COOKIE_SECRET,
     resave: true,
     saveUninitialized: false,
     store: new CookieStore({
