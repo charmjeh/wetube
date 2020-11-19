@@ -32,7 +32,6 @@ export const postJoin = async (req, res, next) => {
     } catch (err) {
       console.error(err)
     }
-    // To Do: Log user in
   }
 };
 

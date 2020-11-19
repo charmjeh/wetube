@@ -107,8 +107,10 @@ export const getEditVideo = async (req, res) => {
   } = req;
   try {
     const video = await Video.findById(id);
+    console.log(video)
     if (video.creator !== req.user.id) {
-      throw Error();
+      console.log('###video.creator : ', video.creator, ' req.user.id : ', req.user.id)
+      throw Error('User id should be same with creator id');
     } else {
       res.render("editVideo", {
         pageTitle: `Edit ${video.title}`,
@@ -116,6 +118,7 @@ export const getEditVideo = async (req, res) => {
       });
     }
   } catch (error) {
+    console.log(error)
     res.redirect(routes.home);
   }
 };
