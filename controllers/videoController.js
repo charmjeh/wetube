@@ -101,15 +101,14 @@ export const videoDetail = async (req, res) => {
 
 export const getEditVideo = async (req, res) => {
   const {
-    params: {
-      id
-    }
-  } = req;
+    id
+  } = req.params;
   try {
     const video = await Video.findById(id);
-    console.log(video)
-    if (video.creator !== req.user.id) {
-      console.log('###video.creator : ', video.creator, ' req.user.id : ', req.user.id)
+    console.log('id', id)
+    console.log('video', video);
+    if (video.creator._id !== req.user.id) {
+      console.log('###video.creator : ', video.creator._id, ' req.user.id : ', req.user.id)
       throw Error('User id should be same with creator id');
     } else {
       res.render("editVideo", {
