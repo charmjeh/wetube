@@ -1,5 +1,6 @@
 import routes from "../routes";
 import Video from "../models/Video";
+import Comment from "../models/Comment";
 
 // Home
 
@@ -87,8 +88,10 @@ export const videoDetail = async (req, res) => {
     }
   } = req;
   try {
-    const video = await Video.findById(id).populate('creator');
-    res.render("videoDetail", {
+    const video = await Video.findById(id)
+      .populate('creator')
+      .populate('comments');
+    res.render('videoDetail', {
       pageTitle: video.title,
       video
     });
@@ -105,9 +108,7 @@ export const getEditVideo = async (req, res) => {
   } = req.params;
   try {
     const video = await Video.findById(id);
-    console.log(video.creator._id !== req.user.id)
     if (video.creator._id !== req.user.id) {
-      console.log('###video.creator.id : ', video.creator._id, ' req.user.id : ', req.user.id)
       throw Error('User id should be same with creator id');
     } else {
       res.render("editVideo", {
@@ -116,7 +117,6 @@ export const getEditVideo = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error)
     res.redirect(routes.home);
   }
 };
@@ -182,3 +182,29 @@ export const postRegisterView = async (req, res) => {
     res.end();
   }
 }
+
+// Add Comment
+export const postAddComment = async (req, res) => {
+  const {
+    params: {
+      id
+    },
+    body: {
+      comment
+    },
+    user
+  } = req;
+  try {
+    const video = await Video.findById(id);
+    const newComment = await Comment.create({
+      text: comment,
+      creator: user.id
+    });
+    video.comments.push(newComment.id);
+    video.save();
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
+  }
+};

@@ -45,7 +45,6 @@ const getVideo = async () => {
                 height: 720
             }
         });
-        console.log('getVideo', stream)
         // stream은 file이 아니라 Object이므로 src로 줄 수 없음!
         videoPreview.srcObject = stream;
         streamObject = stream;
