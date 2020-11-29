@@ -165,3 +165,20 @@ export const deleteVideo = async (req, res) => {
   }
   res.redirect(routes.home);
 };
+
+// 비디오를 찾아서 조회수를 증가시키는 함수
+export const postRegisterView = async (req, res) => {
+  const {
+    id
+  } = req.params;
+  try {
+    const video = await Video.findById(id)
+    video.views += 1;
+    video.save();
+    res.status(200);
+  } catch (err) {
+    res.status(400).end();
+  } finally {
+    res.end();
+  }
+}

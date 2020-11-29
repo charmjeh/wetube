@@ -8,6 +8,14 @@ const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
 const videoRange = document.getElementById('jsVolume');
 
+// database를 변경해야할 필요성이 있다면, 반드시 POST request를 사용해야함.
+const registerView = () => {
+    const videoId = window.location.href.split('/videos/')[1]
+    fetch(`/api/${videoId}/view`, {
+        method: 'POST'
+    });
+};
+
 function handlePlayClick() {
     if (videoPlayer.paused) {
         videoPlayer.play();
@@ -90,6 +98,7 @@ function setVideoTime() {
 function handleEnded() {
     videoPlayer.currentTime = 0;
     playBtn.innerHTML = '<i class="fas fa-play"></i>';
+    registerView();
 }
 
 function handleDrag(event) {
