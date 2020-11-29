@@ -1,23 +1,26 @@
-import express from "express";
-import morgan from "morgan"; // 애플리케이션에서 발생하는 모든 일들을 logging함
-import helmet from "helmet" // 애플리케이션이 더 안전하도록 함
-import cookieParser from "cookie-parser" // cookie를 전달받아서 사용할 수 있도록함
-import bodyParser from "body-parser" // 사용자가 웹사이트로 전달하는 정보들을 검사함
-import passport from 'passport'
-import mongoose from 'mongoose'
-import session from 'express-session'
+import express from 'express';
+import favicon from 'serve-favicon';
+import morgan from 'morgan'; // 애플리케이션에서 발생하는 모든 일들을 logging함
+import helmet from 'helmet' // 애플리케이션이 더 안전하도록 함
+import cookieParser from 'cookie-parser'; // cookie를 전달받아서 사용할 수 있도록함
+import bodyParser from 'body-parser'; // 사용자가 웹사이트로 전달하는 정보들을 검사함
+import passport from 'passport';
+import path from 'path';
+import mongoose from 'mongoose';
+import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import {
     localsMiddleware
-} from './middlewares'
-import routes from './routes'
-import globalRouter from "./routers/globalRouter"
-import userRouter from "./routers/userRouter"
-import videoRouter from "./routers/videoRouter"
+} from './middlewares';
+import routes from './routes';
+import globalRouter from './routers/globalRouter';
+import userRouter from './routers/userRouter';
+import videoRouter from './routers/videoRouter';
 import './passport'
 
 const app = express(); // express 실행
 const CookieStore = MongoStore(session)
+app.use(favicon(path.join(__dirname, '/', 'favicon.ico')))
 app.use(helmet());
 app.set('view engine', 'pug'); // 템플릿 언어, express의 view engine
 app.use('/uploads', express.static('uploads')); // middleware to serve files from whithin a given root directory
