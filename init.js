@@ -3,7 +3,8 @@ dotenv.config(); // (.env파일의 변수를 (KEY = VALUE) 형태로 process.env
 import './db'
 import app from './app';
 
-
+// we import this because we need to make the mongoose connection 
+// aware of the models that we weill save in the futrue
 import './models/Video'
 import './models/Comment'
 import "./models/User"
