@@ -28,6 +28,5 @@ const VideoSchema = new mongoose.Schema({ // definition (the shape of data on DB
         ref: "User"
     }
 });
-
 const model = mongoose.model('Video', VideoSchema)
 export default model;
